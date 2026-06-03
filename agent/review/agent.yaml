@@ -1,0 +1,17 @@
+spec_version: "0.1.0"
+name: buildmedic-review
+version: 0.1.0
+description: Adversarial reviewer that validates proposed patches for correctness, safety, and completeness.
+model:
+  preferred: "openrouter:deepseek/deepseek-v4-flash"
+tools: []
+skills:
+  - security-review
+runtime:
+  max_turns: 8
+compliance:
+  risk_level: high
+  human_in_the_loop: true
+  recordkeeping:
+    audit_logging: true
+    retention_days: 30

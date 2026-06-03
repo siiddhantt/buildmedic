@@ -1,0 +1,17 @@
+spec_version: "0.1.0"
+name: buildmedic-patch
+version: 0.1.0
+description: Generates approval-ready proposed patches based on triage diagnosis. Creative but constrained to minimal diffs.
+model:
+  preferred: "openrouter:deepseek/deepseek-v4-flash"
+tools: []
+skills:
+  - diff-generation
+runtime:
+  max_turns: 10
+compliance:
+  risk_level: medium
+  human_in_the_loop: true
+  recordkeeping:
+    audit_logging: true
+    retention_days: 30

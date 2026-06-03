@@ -1,0 +1,11 @@
+.buildmedic/
+.env
+.env.*
+!.env.example
+.next/
+agent/*/.gitagent/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

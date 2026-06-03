@@ -1,0 +1,17 @@
+spec_version: "0.1.0"
+name: buildmedic-triage
+version: 0.1.0
+description: First-pass CI failure diagnostician. Read-only root-cause analysis with evidence-backed findings.
+model:
+  preferred: "openrouter:deepseek/deepseek-v4-flash"
+tools: []
+skills:
+  - log-analysis
+runtime:
+  max_turns: 14
+compliance:
+  risk_level: medium
+  human_in_the_loop: true
+  recordkeeping:
+    audit_logging: true
+    retention_days: 30
