@@ -66,7 +66,7 @@ export async function runGitAgentTriage(
     model: process.env.BUILDMEDIC_MODEL ?? defaultModel(),
     tools,
     replaceBuiltinTools: true,
-    maxTurns: 14,
+    maxTurns: 20,
     hooks: {
       preToolUse: async () => ({ action: "allow" }),
     },
@@ -304,6 +304,12 @@ Suggested workflow:
 4. Call get_workflow_jobs for the most relevant failed run.
 5. Download only the most relevant failed job log.
 6. Read PR files only when the log or patch points to them.
+
+Stopping guidance:
+- Be evidence-seeking, not tool-hungry. Once PR metadata, changed files, failed jobs, and the relevant log or annotation explain the failure, stop calling tools and return the JSON report.
+- If one important source is unavailable, try at most one targeted alternate source for the same question, then return JSON with explicit uncertainty.
+- Do not spend turns proving every secondary detail. Prioritize a clear primary diagnosis, important secondary failures, and evidence that a human can verify.
+- If you already know the root cause but a file read is unavailable, do not stall. State the unavailable source in Evidence or Uncertainty and complete the report.
 
 Return only valid JSON matching this TypeScript shape:
 {

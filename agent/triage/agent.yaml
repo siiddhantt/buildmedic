@@ -8,7 +8,7 @@ tools: []
 skills:
   - log-analysis
 runtime:
-  max_turns: 14
+  max_turns: 20
 compliance:
   risk_level: medium
   human_in_the_loop: true
