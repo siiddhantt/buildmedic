@@ -81,10 +81,10 @@ export async function runPipeline(
     status: patch ? "complete" : "failed",
   });
 
-  if (!patch || patch.status !== "patch_ready") {
+  if (!patch) {
     emit({ type: "stage", stage: "reviewing", status: "skipped" });
     emit({ type: "stage", stage: "complete", status: "complete" });
-    return { triage, patch: patch ?? undefined, pipelineStage: "complete" };
+    return { triage, pipelineStage: "complete" };
   }
 
   emit({ type: "stage", stage: "reviewing", status: "running" });

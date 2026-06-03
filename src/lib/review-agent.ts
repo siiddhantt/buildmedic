@@ -134,7 +134,7 @@ function buildReviewTools(
 }
 
 function buildReviewPrompt(triage: TriageReport, patch: PatchProposal): string {
-  return `You are BuildMedic Review Agent. Your job is to review the proposed patch against the triage diagnosis and verify correctness.
+  return `You are BuildMedic Review Agent. Your job is to review the Patch Agent output against the triage diagnosis and verify correctness.
 
 ## Triage Diagnosis
 
@@ -149,7 +149,7 @@ ${triage.evidence.map((e) => `- [${e.source}] ${e.detail}`).join("\n")}
 ### Suspected Files
 ${triage.suspectedFiles.map((f) => `- ${f}`).join("\n")}
 
-## Proposed Patch
+## Patch Agent Output
 
 Status: ${patch.status}
 Summary: ${patch.summary}
@@ -167,11 +167,11 @@ ${patch.caveats.map((c) => `- ${c}`).join("\n")}
 
 ## Instructions
 
-1. Read the modified files using read_pr_file to understand the full context.
-2. Verify the patch addresses the diagnosed root cause.
-3. Check for potential regressions, broken imports, type errors, or logic bugs.
-4. Check for security issues introduced by the patch.
-5. Assess whether the patch is minimal and appropriate.
+1. If status is "patch_ready", read the modified files using read_pr_file to understand the full context.
+2. If status is "cannot_patch", review whether that no-patch decision is justified by the triage evidence and constraints.
+3. Verify the patch or no-patch decision addresses the diagnosed root cause.
+4. Check for potential regressions, broken imports, type errors, logic bugs, or unsafe suppressions when a diff is proposed.
+5. Assess whether the patch-stage output is minimal, appropriate, and honest about limitations.
 
 Return only valid JSON matching this shape:
 {
@@ -187,6 +187,6 @@ Rules:
 - Be thorough but fair — minor style issues are not grounds for rejection.
 - Reject if the patch could introduce regressions or does not address the root cause.
 - Use "needs_changes" if the approach is correct but implementation needs adjustment.
-- This stage reviews a proposed diff only. It never writes files, opens PRs, installs packages, pushes, deploys, or performs destructive actions.
+- This stage reviews patch-stage output only. It never writes files, opens PRs, installs packages, pushes, deploys, or performs destructive actions.
 - If a tool returns unavailable data, make the limitation explicit and lower confidence instead of assuming context.`;
 }
