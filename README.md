@@ -1,6 +1,8 @@
 # BuildMedic
 
-BuildMedic is a GitAgent-powered CI failure triage assistant for GitHub pull requests.
+A GitAgent-powered CI failure triage assistant for GitHub pull requests.
+
+<img width="1440" height="780" alt="Screenshot 2026-06-04 at 7 41 06 AM" src="https://github.com/user-attachments/assets/32a9ebd5-0c42-42be-8c0a-9057e39fc3e6" />
 
 It turns one failing pull request URL into:
 
@@ -80,9 +82,3 @@ export BUILDMEDIC_DB_PATH=/path/to/buildmedic.sqlite
 3. Review the live agent timeline, findings, failed job evidence, proposed diff, and review verdict.
 4. Refresh or reload a recent run to show durable local audit history.
 5. Explain that writes are intentionally approval-gated for the challenge demo.
-
-## Submission Notes
-
-BuildMedic uses GitAgent where it matters: agent identity, rules, skills, read-only tools, streamed events, and auditable tool traces. GitHub metadata comes from Coral SQL. Raw GitHub Actions job logs use one direct downloader because GitHub serves logs as short-lived redirected text, not as JSON rows.
-
-The pitch: BuildMedic turns noisy CI failures into reviewed, approval-ready fixes without giving agents repository write access.
