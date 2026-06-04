@@ -376,9 +376,6 @@ export default function Home() {
             </p>
           </div>
           <div className="flex shrink-0 flex-col items-end gap-1.5 mt-0.5">
-            <Badge variant="outline" className="hidden sm:inline-flex">
-              v0.1 proof of concept
-            </Badge>
             <a
               href="https://github.com/siiddhantt"
               target="_blank"
@@ -395,6 +392,9 @@ export default function Home() {
               </svg>
               @siiddhantt
             </a>
+            <Badge variant="outline" className="hidden sm:inline-flex">
+              v0.1 proof of concept
+            </Badge>
           </div>
         </header>
 
